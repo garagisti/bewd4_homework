@@ -22,7 +22,7 @@ def generate_random_number
 	random_number = 1 + rand(10)
 end
 
-# Check if the Guess is correct
+# Check if the Guess is correct, 
 def is_guess_correct(guess,secret_number)
 
 	if guess == secret_number
@@ -33,12 +33,40 @@ def is_guess_correct(guess,secret_number)
 
 end
 
+# Provide the user a hint of whether they are
+# higher or lower than the secret number.
+def provide_user_hint(guess,secret_number)
 
-# Intros
-#   - Welcome the player to your game. Let them know who created the game.
-#   - Ask for the player's name then personally greet them by printing to the screen, "Hi player_name!"
-#   - Any good game will communicate the rules. Let the player know they must guess a number between 1 and 10
-#   and that they only have 3 tries to do so.
+	if guess > secret_number
+		puts 'Lower, your guess was too high.'
+	else
+		puts 'Higher, your guess was too low.'
+	end
+end
+
+# Let the user know what the outcome of the game was.
+def print_game_outcome(user_wins_game,secret_number)
+
+	if user_wins_game
+		puts "Yess!! CONGRATULATIONS! You guessed it!!"
+	else
+		puts 'Sorry! Unfortunately you didn\'t guess the Secret Number!'
+		puts "The Secret Number was: #{secret_number}"
+end
+		puts ''
+		puts '############'
+		puts 'GAME OVER'
+		puts '############'
+		puts ''
+end
+
+
+
+# Intro Messages
+###############################################################################
+# This section gets Welcomes the user, gets their name and proivdes the rules
+# of the game.
+
 puts ''
 puts '#########################################'
 puts 'Welcome to Rahul\'s Number Guessing Game!'
@@ -51,71 +79,64 @@ puts ''
 puts 'So the name of the game is to guess a secret number between 1 and 10'
 puts 'You get three (3) shots at guessing it!'
 puts ''  
+
+
+
+# Variables
+###############################################################################
+# Set or Generate the variables for the game
+guess_count = 0
+max_guess_attempts = 3
+user_wins_game = false;
+secret_number = generate_random_number
+
+
+
+# Debug Statements
+###############################################################################
+# Debug statements to be used while debugging for issues
+
+# puts "The Secret Number is: #{secret_number}"
+
+
+# Main Logic
+###############################################################################
 puts '############'
 puts 'Let\'s Play'
 puts '############'
 puts ''
 puts 'Now enter a number between 1 and 10'
 
-
-# Set or Generate the variables for the game
-guess_count = 0
-max_guess_attempts = 3
-secret_number = generate_random_number
-
-# Debug statements
-# puts "The Secret Number is: #{secret_number}"
-
-# While we have attempts left, let's play
+# While we have Guess Attempts left, let's play
 while guess_count < max_guess_attempts do
 
 
-	# Take the initial input from the user
+	# Tell the user how many guesses they have remaining
 	puts "You have #{max_guess_attempts-guess_count} Attempts remaining."
 	puts '=>'
+
+	# Get the guess and convert it to an integer.
 	guess = get_input_from_player.to_i
 
+	# if the guess is correct
 	if is_guess_correct(guess, secret_number)
-		puts "Yess!! CONGRATULATIONS! You guessed it!!"
-		puts ''
-		puts '############'
-		puts 'GAME OVER'
-		puts '############'
+
+		# Then the user has won and set the user wins boolean to true
+		user_wins_game = true
+		
+		#Break out of the while loop because we don't care how many guesses are left
 		break
 
 	else
 		puts "Whoops, that's not it."
+		
+		# Lets tell the user whether they were higher or lower than the secret number.
+		provide_user_hint(guess, secret_number)
+
 		# increment guess counter
 		guess_count +=1
-
 	end
-
 end
 
-
-#
-# We're ready to program! To practice our Ruby skills lets create a secret number game.
-# In this game players have three tries to guess a secret number between 1 and 10.
-#
-# Here are some guidelines to building your game:
-#
-# Intros
-#   - Welcome the player to your game. Let them know who created the game.
-#   - Ask for the player's name then personally greet them by printing to the screen, "Hi player_name!"
-#   - Any good game will communicate the rules. Let the player know they must guess a number between 1 and 10
-#   and that they only have 3 tries to do so.
-#
-# Functionality:
-#  -  Hard code the secret number. Make it a random number between 1 and 10.
-#  -  Ask the user for their guess.
-#  -  Verify if they were correct. If the player guesses correctly they win the game they should be congratulated and the game should end.
-#  -  If they guess incorrectly, give the player some direction. If they guess too high let them know, if they guess too low, let them know.
-#  -  Don't forget to let your players know how many guesses they have left. Your game should say something like
-#     "You have X many guesses before the game is over enter a another number"
-#  -  If they don't guess correctly after 3 tries, print that the Player lost and the game is over. Also let them know what the `secret_number` was.
-#
-# Make sure to add helpful comments to your code to document what each section does.
-#
-# Remember to cast input from the Player into the appropriate data type.
-#
-###############################################################################
+# Finally print the out the result of the game
+print_game_outcome(user_wins_game,secret_number)

@@ -14,7 +14,26 @@
 
 # Get the name of the player
 def get_input_from_player
-	user_input = gets.chomp
+	
+user_input = gets.chomp
+
+	# Validate - but make sure there is an output
+	# loop do user_input = gets.chomp 
+	# 	if validate_not_nil_or_empty(user_input)
+	# 		break
+	# 	end
+	# end
+end
+
+# Make sure the entry isn't nill or empty
+def validate_not_nil_or_empty(input)
+
+	if input.nil? || input.empty?
+		puts 'Please enter a non-empty or non-nil value.'
+		false
+	else
+		true
+	end
 end
 
 # Generate a Random Number
@@ -61,7 +80,6 @@ end
 end
 
 
-
 # Intro Messages
 ###############################################################################
 # This section gets Welcomes the user, gets their name and proivdes the rules
@@ -96,7 +114,7 @@ secret_number = generate_random_number
 ###############################################################################
 # Debug statements to be used while debugging for issues
 
-# puts "The Secret Number is: #{secret_number}"
+ puts "The Secret Number is: #{secret_number}"
 
 
 # Main Logic
@@ -117,6 +135,8 @@ while guess_count < max_guess_attempts do
 
 	# Get the guess and convert it to an integer.
 	guess = get_input_from_player.to_i
+
+	# Validate that the guess is a number  
 
 	# if the guess is correct
 	if is_guess_correct(guess, secret_number)

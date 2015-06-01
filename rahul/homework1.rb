@@ -14,15 +14,13 @@
 
 # Get the name of the player
 def get_input_from_player
-	
-user_input = gets.chomp
 
 	# Validate - but make sure there is an output
-	# loop do user_input = gets.chomp 
-	# 	if validate_not_nil_or_empty(user_input)
-	# 		break
-	# 	end
-	# end
+	loop do user_input = gets.chomp 
+		if validate_not_nil_or_empty(user_input)
+			return user_input
+		end
+	end
 end
 
 # Make sure the entry isn't nill or empty
@@ -114,7 +112,7 @@ secret_number = generate_random_number
 ###############################################################################
 # Debug statements to be used while debugging for issues
 
- puts "The Secret Number is: #{secret_number}"
+# puts "The Secret Number is: #{secret_number}"
 
 
 # Main Logic

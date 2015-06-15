@@ -1,3 +1,6 @@
+# Shirren: Excellent submission Josh, liked the simplicity and clarity of the
+# implementation, a very good benchmark for the homework.
+
 ###############################################################################
 #
 # Secret Number Game
@@ -5,7 +8,7 @@
 # Version: 1
 # Author: Josh
 # Class: BEWD4
-# 
+#
 ###############################################################################
 
 # Begin Introduction
@@ -17,6 +20,7 @@ player_name = gets.chomp
 puts "Welcome #{player_name}! \nThe rules of the game are simple. You will need to guess a number between 1 and 10. You will have only 3 attempts to guess the correct number, then the game is over. Good luck :)"
 
 # Generate random number between 1 and 10
+# Shirren: Alternatively secret_number = rand(1..10)
 secret_number = 1 + rand(10)
 
 # Commence loop allowing for 3 attempts

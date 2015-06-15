@@ -1,3 +1,8 @@
+# Shirren: A very good effort Gary, my only feedback perhaps is to use a tool
+# like Rubocop which will guide you a bit better on preferred Ruby syntax, I can
+# see that your style of coding is very much Javaesque, but I am sure in time as
+# you write more Ruby this will change :-)
+
 ###############################################################################
 #
 # Back-End Web Development - Homework #1
@@ -39,20 +44,24 @@
 # Show Welcome Message
 def show_welcome_message
   puts 'Welcome to the Game of Guess The Number'
-  puts 'Written by Gary Mann, May 2015'
-  puts ''
+  # Shirren: If you want an added newline just add it to the original string
+  # thereby eliminating an additional puts statement
+  puts "Written by Gary Mann, May 2015\n\n"
+  # puts ''
 end
 
 # Get the player's name
 def get_player_name
-  puts 'Please enter your name:'
-  name = gets.chomp
-  puts ''
-  name
+  puts "Please enter your name:\n\n"
+  # Shirren: Simplified this function
+  gets.chomp
 end
 
 # Explain the rules to the player
 def show_rules(player)
+
+  # Shirren: For a multiline statement in Ruby there is something called a heredoc. Not
+  # something we teach in the course, but would serve you well here
   puts "Hi #{player}"
   puts 'This game requires you to guess a number, which can be an integer from 1 to 10.'
   puts 'The target number is created randomly each time you run the game.'
@@ -82,6 +91,7 @@ end
 
 # test whether the player's entry is correct or not and display an appropriate message
 def test_guess(user_guess, secret_number, maximum_guesses, guess_count)
+  # Shirren: The brackets are redundant in Ruby
   if (user_guess == secret_number)
     puts ''
     true
@@ -111,13 +121,26 @@ end
 show_welcome_message
 player = get_player_name
 show_rules(player)
+
+# Shirren: secret_number = rand(1..10)
 secret_number = 1 + rand(10)
+
 guess_count = 0
+
+# Shirren: This is a constant so better to write
+# MAXIMUM_GUESSES = 3
 maximum_guesses = 3
 correct_number_found = false
+
+# Shirren: As mentioned in class the use of while and for loops are not common place
+# in Ruby, an alternate way to write this code would have been to use either the
+# range with an exit or a 3.times with an exit
 while (!correct_number_found) && (guess_count < maximum_guesses)
   guess_count = guess_count + 1
   user_guess = get_user_guess(guess_count)
   correct_number_found = test_guess(user_guess, secret_number, maximum_guesses, guess_count)
 end
+
+# Shirren: Please add empty lines between groups of statements for improved
+# legibility
 output_final_result_message(correct_number_found, player, secret_number)

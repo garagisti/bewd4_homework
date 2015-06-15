@@ -1,3 +1,7 @@
+# Shirren: Good use of functions for reuse and improved code legibility, though
+# one could argue the function play_game was a little too long. A very good
+# submission for the first bit of homework well done.
+
 
 # Secret Number v0.2 Game developed by Daniel Baker
 
@@ -17,6 +21,10 @@ def play_game(secret_number)
   # Start look
   range.each do |i|
 
+    # Shirren: I understand the initiative here to make the code better
+    # but remember always implement the simplest solution to avoid any
+    # uneccessary complexity
+
     # Conditionals for pluralisation
     if i == 1
       puts 'What is your guess?'
@@ -26,10 +34,17 @@ def play_game(secret_number)
       puts 'What is your next guess?'
     end
 
+    # Shirren: This bit of code would have been better encapsulated in a function
+
     # Grab player guess
     player_guess = gets.chomp
     guess = player_guess.to_i
+
+    # Shirren: Remove, serves no purpose
     guess
+
+    # Shirren: This statement could have been implemented as a single if elsif
+    # block without the need for nesting
 
     # Test player guess vs secret number
     if guess != secret_number
@@ -77,5 +92,3 @@ puts "Hello, #{player_name}!"
 
 # Start loop
 play_game(secret_number)
-
-

@@ -1,81 +1,57 @@
+# Shirren: A good bit of programming Ben, please check your editor settings. Because
+# the indentation was off I found reading the code to be a bit difficult.
 
-# Secret Number v0.2 Game developed by Daniel Baker
+number = rand(1..10)
+num_guesses = 0
 
-### Game data
-
-# Get players name
-def player_name
-  user_input = gets.chomp
-  user_input.to_s
-end
-
-def play_game(secret_number)
-
-  # Set loop range
-  range = (1..3)
-
-  # Start look
-  range.each do |i|
-
-    # Conditionals for pluralisation
-    if i == 1
-      puts 'What is your guess?'
-    elsif i == 3
-      puts 'What is your final guess?'
-    else
-      puts 'What is your next guess?'
-    end
-
-    # Grab player guess
-    player_guess = gets.chomp
-    guess = player_guess.to_i
-    guess
-
-    # Test player guess vs secret number
-    if guess != secret_number
-      if guess < secret_number && i < 3
-        puts "Your guess of #{guess} is too low, try again."
-      elsif guess > secret_number && i < 3
-        puts "Your guess of #{guess} is too high, try again."
-      elsif i == 3
-        # End game if player runs out of guesses
-        puts "Game over. The correct answer was #{secret_number}."
-      end
-    else
-      puts "#{guess} is correct! You have won this round."
-      # Break loop if answer is correct
-      break
-    end
-
-    # Math for guess count
-    guesses = 3 - i
-
-    # Conditionals for pluralisation
-    if guesses == 1
-      puts "You have #{guesses} guess left."
-    elsif guesses == 0
-      # nothing
-    else
-      puts "You have #{guesses} guesses left."
-    end
-
-  end
-
-end
-
-# Set secret number
-secret_number = rand(1..10)
-
-# Game welcomes + introductions
-puts 'Welcome to Secret Number, a game developed by Daniel Baker'
-
-puts 'The rules are simple. You have 3 chances to guess a randomly generated number between 1 and 10'
-
+puts 'Welcome to the secret number game, this game was created by Ben Newsom'
 puts 'What is your name?'
+username = gets.chomp
+puts "Hi there #{username}! You must guess a number between one and ten in this game, you will only have three tries to do so."
 
-puts "Hello, #{player_name}!"
+# Time to play the game
+puts 'Please try and guess the secret number'
 
-# Start loop
-play_game(secret_number)
+# Shirren: Would have preferred the use of X.downto(Y) instead here. The use of
+# while, for, and other open ended loops are not favoured.
+# Commence loop
+loop do
+	# Potion of code which asks for user's guess and accrues guesses to the guess counter.
+	print "What is your guess? "
+	guess = gets.chomp.to_i
 
+	# Shirren: The use of a downto would have eliminated the need for this variable
+	num_guesses = num_guesses + 1
+	puts "Guess ##{num_guesses} = #{guess}"
 
+	unless guess == number
+
+	# Shirren: Please check your indendation. I found this code hard to read because
+	# of the indentation issues
+	# Message if unsuccessful and number of guesses is < 3, continues loop
+	if guess > number
+		# Shirren: Why not just puts 'Too high'
+	message = "Too high"
+	puts message
+	puts "You have #{3 - num_guesses} guesses remaining"
+	else
+		# Shirren: Why not just puts 'Too low'
+	message = "Too low"
+	puts message
+	puts "You have #{3 - num_guesses} guesses remaining"
+	end
+
+	# Message if successful, breaks loop
+	else
+	puts "You got it!"
+	puts "It took you #{num_guesses} guesses."
+	exit
+	end
+
+	# Message if unsucessful and number of guesses equals 3, breaks loop
+	if num_guesses == 3
+		message = "Too many guesses, you lose. The secret number was #{number}, better luck next time!"
+		puts message
+		exit
+	end
+end

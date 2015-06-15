@@ -1,10 +1,13 @@
+# Shirren: Very good submission Rahul. Good use of functions, though a function
+# with a single statement that is only called once is a bit redundant. Also avoid
+# large java and javascript esque comment blocks like the one below.
 
 ###############################################################################
 #
 # Back-End Web Development - Homework #1
 # BY Rahul Bose schu82@gmail.com
 #
-# This is a Secret Number game built as homework for BEWD. 
+# This is a Secret Number game built as homework for BEWD.
 # The purpose of the game is to have players guess a secret number from 1-10.
 #
 ###############################################################################
@@ -16,7 +19,7 @@
 def get_input_from_player
 
 	# Validate - but make sure there is an output
-	loop do user_input = gets.chomp 
+	loop do user_input = gets.chomp
 		if validate_not_nil_or_empty(user_input)
 			return user_input
 		end
@@ -36,10 +39,14 @@ end
 
 # Generate a Random Number
 def generate_random_number
+	# Shirren: rand(1..10)
 	random_number = 1 + rand(10)
 end
 
-# Check if the Guess is correct, 
+# Check if the Guess is correct,
+# Shirren: Usually functions which ask a question in ruby are followed by a ?
+# so guess_correct? is more ruby esque as opposed to is_guess_correct which is
+# a bit more Java like. Also avoid uneccessary empty lines
 def is_guess_correct(guess,secret_number)
 
 	if guess == secret_number
@@ -62,6 +69,8 @@ def provide_user_hint(guess,secret_number)
 end
 
 # Let the user know what the outcome of the game was.
+# Shirren: Please be careful with your indendation. The indentaion in this
+# function totally confused me.
 def print_game_outcome(user_wins_game,secret_number)
 
 	if user_wins_game
@@ -77,6 +86,9 @@ end
 		puts ''
 end
 
+
+# Shirren: Look into heredocs which are generally preferred for multi-line
+# output statements like the ones below
 
 # Intro Messages
 ###############################################################################
@@ -94,19 +106,23 @@ puts "Hi #{get_input_from_player}!!"
 puts ''
 puts 'So the name of the game is to guess a secret number between 1 and 10'
 puts 'You get three (3) shots at guessing it!'
-puts ''  
-
+puts ''
 
 
 # Variables
 ###############################################################################
 # Set or Generate the variables for the game
+
+# Shirren: max_guess_attempts is a constant so name it MAX_GUESS_ATTEMPTS so the
+# intention of the variable is clearer
+
 guess_count = 0
 max_guess_attempts = 3
 user_wins_game = false;
 secret_number = generate_random_number
 
 
+# Shirren: Guess you now know how to use byebug? :-)
 
 # Debug Statements
 ###############################################################################
@@ -123,6 +139,9 @@ puts '############'
 puts ''
 puts 'Now enter a number between 1 and 10'
 
+# Shirren: As mentioned in class the use of while, for, do until are generally
+# not liked in Ruby instead in this case 3.times would have been perfect
+
 # While we have Guess Attempts left, let's play
 while guess_count < max_guess_attempts do
 
@@ -134,20 +153,20 @@ while guess_count < max_guess_attempts do
 	# Get the guess and convert it to an integer.
 	guess = get_input_from_player.to_i
 
-	# Validate that the guess is a number  
+	# Validate that the guess is a number
 
 	# if the guess is correct
 	if is_guess_correct(guess, secret_number)
 
 		# Then the user has won and set the user wins boolean to true
 		user_wins_game = true
-		
+
 		#Break out of the while loop because we don't care how many guesses are left
 		break
 
 	else
 		puts "Whoops, that's not it."
-		
+
 		# Lets tell the user whether they were higher or lower than the secret number.
 		provide_user_hint(guess, secret_number)
 

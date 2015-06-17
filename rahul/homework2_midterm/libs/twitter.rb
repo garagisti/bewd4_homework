@@ -24,7 +24,7 @@ def prepare_access_token(oauth_token, oauth_token_secret)
 end
 
 # Extract the JSON data and return it.
-def play
+def call
   # Exchange our oauth_token and oauth_token secret for the AccessToken instance.
   access_token = prepare_access_token(@api_key, @api_secret)
 

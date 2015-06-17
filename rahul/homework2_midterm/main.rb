@@ -56,10 +56,10 @@ end
 
 # Play Twitter with the given Api key and api secret
 # TODO: convert this to take the user's generated key and token
-def play_twitter
+def call_twitter
 
   twitter = Twitter.new(API_KEY, API_SECRET)
-  process_twitter_response(twitter.play)
+  process_twitter_response(twitter.call)
 
 end
 
@@ -104,7 +104,9 @@ def play_game
 
         # Now we play the game with the users input
         # TODO: Figure out how to convert the user's input to an API Key and API secret.
-        play_twitter
+        call_twitter
+      else
+        puts "Please enter a valid entry, \'t\' for Twitter or \'q\' to Quit \n"
       end
     end
   end

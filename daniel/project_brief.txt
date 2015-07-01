@@ -1,0 +1,24 @@
+Girlcrush.
+
+App for sharing finds (products, recipes etc). 
+
+User takes a photo, uploads w/ title, desc then tags GEO data, so others can view/use/purchase product.
+
+Each user has own 'page' with list of posts.
+
+Other users can up/downvote crushes.
+
+App functions like tinder, quick swiping/clicking between posts. Only next is available.
+
+If user upvotes another post, they will get a link in their account/dashboard sort of a favourites page.
+
+Mix between Pinterest, Tinder and Lookbook
+
+External API: GMaps.
+GEMs: Device, Paperclip
+Invalid data: Forms (Registration, Post Crush)
+Associations: 
+- User has_many Crushes
+- Crush has_many Votes
+
+Monetisation - partnerships with companies to post their products. Ads mixed in with regular crushes.

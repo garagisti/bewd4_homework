@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="container-fluid">
+    <header>
+      <h1>Search Results:</h1>
+      <p>There were <%= @movies.count%> Results</p>
+    </header>
+    <!-- This bit should list all the movies -->
+    <%= render partial: 'shared/results_table' %>
+  </div>
+</div>

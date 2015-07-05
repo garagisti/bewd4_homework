@@ -1,0 +1,8 @@
+<div class="jumbotron">
+  <h1>Welcome to Retflix!</h1>
+  <h2>See our collection of movies below</h2>
+  <%= link_to 'Add Movie', new_movie_path, class: 'btn btn-primary'%>
+</div>
+
+<!-- This bit should list all the movies -->
+<%= render partial: 'shared/results_table' %>

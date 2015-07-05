@@ -1,0 +1,24 @@
+
+<table class="table table-striped" role="grid">
+  <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th class="text-center">Year of Release</th>
+        <th class="text-center"> Update Details</th>
+      </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+    <tr>
+      <td> <%= movie.id %> </td>
+      <td> <%= link_to movie.title, movie_path(movie) %> </td>
+      <td> <%= movie.description %> </td>
+      <td class="text-center"> <%= movie.year_released %> </td>
+      <td class="text-center"> <%= link_to 'Edit', edit_movie_path(movie)%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

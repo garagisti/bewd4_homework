@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-sm-6">
+    <%= render partial: 'shared/errors', object: @movie.errors %>
+    <header>
+      <h1>Movie Details:</h1>
+    </header>
+  <h2>Title: <%= @movie.title %></h2>
+  <h3>Description: <%= @movie.description %></h3>
+  <h3>Year of Release: <%= @movie.year_released %></h3>
+
+  </div>
+</div>

@@ -1,10 +1,16 @@
+# SDP: Good use of namespaces with the introduction of the lib folder. But the
+# use of require_relative is somewhat uncommon, try and use require as a rule of
+# thumb
 require_relative 'libs/Person'
 require_relative 'libs/Twitter'
 require 'byebug'
 
-
 # Valid Username Regex
 VALID_USER_NAME_REGEX = /[a-zA-Z]/
+
+# SDP: Traditionally this is solved by creating environment variables that
+# can be set in your web host. Rails for example then has access to these
+# env variables
 
 # TWITTER API KEYS - TODO: Figure out how to generate these from user inputs
 # instead of using the as global variables - very bad!
@@ -12,8 +18,16 @@ API_KEY = '134402524-vZ8WrtDUXm8l83kTtN0IMVqBrGpoVYxtiFCw74JR'
 API_SECRET = 'odpdDneDFAoP4Tttdx7lKGjrPXYuMGQCO9PHw2blbTMYV'
 
 
+# SDP: Semantically correct implementation, but the implementation could be
+# a lot simpler, look at mine below. Also functions which return Boolean end
+# in a question mark
+def valid?(user_input)
+  !input.nil? && !input.empty?
+end
+
 # Make sure the entry isn't nill or empty
 def validate_not_nil_or_empty(input)
+  # SDP: This empty line is not required
 
   if input.nil? || input.empty?
     puts 'Please enter a non-empty or non-nil value.'
@@ -23,10 +37,18 @@ def validate_not_nil_or_empty(input)
   end
 end
 
+# SDP: Not sure whether this is the best way of doing it. I would have removed
+# the other function validate_not_nil_or_empty as I think it's redundant
+# simply writing !VALID_USER_NAME_REGEX.match(input).nil?
+def valid_alt?(input)
+  !VALID_USER_NAME_REGEX.match(input).nil?
+end
+
 # Let's make sure the input is a string & not nil or empty
 # TODO: Redundant code & code duplication - see if you can combine with
 # the validate not nill or empty function.
 def validate_string_input(input)
+  # SDP: Again in Ruby this empty line is not required
 
   if !(VALID_USER_NAME_REGEX === input)
     puts 'Please enter valid characters (no numbers).'
@@ -44,6 +66,7 @@ def process_twitter_response(responses)
   # if the response is ok then proceed
   responses.each do |response|
 
+    # SDP: Please indent the code in the block!
   tweet = response['text']
   tweet_time = response['created_at']
   user = response['user']
@@ -70,6 +93,8 @@ def create_player
   puts "What is your Name? "
   puts "=> \n"
 
+  # SDP: Please make sure your end statements match in terms of indentation
+
   # Seek & validate the input
   loop do user_input = gets.chomp
       if validate_not_nil_or_empty(user_input) && validate_string_input(user_input)
@@ -78,6 +103,8 @@ def create_player
   end
 end
 
+
+# SDP: I am not quite sure what the goal of this bit of code is.
 
 # Start the game
 def play_game

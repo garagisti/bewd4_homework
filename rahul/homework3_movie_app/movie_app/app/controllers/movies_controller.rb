@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
 
   # GET /movies/:id
   def show
-    get_movie
+    fetch_movie
   end
 
   # GET /movies/new
@@ -16,10 +16,10 @@ class MoviesController < ApplicationController
 
   # POST /movies
   def create
-      @movie = Movie.new(white_listed_parameters)
-      if @movie.save
-        flash[:notice] = 'Movie Saved Successfully!'
-        redirect_to movies_path
+    @movie = Movie.new(white_listed_parameters)
+    if @movie.save
+      flash[:notice] = 'Movie Saved Successfully!'
+      redirect_to movies_path
     else
       render :new
     end
@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
 
   # PUT /movies
   def update
-    get_movie
+    fetch_movie
     if @movie.update_attributes(white_listed_parameters)
       flash[:notice] = 'Movie Updated Successfully!'
       redirect_to movies_path
@@ -38,13 +38,13 @@ class MoviesController < ApplicationController
 
   # GET /movie/:id/edit
   def edit
-    get_movie
+    fetch_movie
   end
 
   private
 
   # Get's the movie from the database, and redirects if unable to find one
-  def get_movie
+  def fetch_movie
     begin
       @movie = Movie.find(params[:id])
     rescue

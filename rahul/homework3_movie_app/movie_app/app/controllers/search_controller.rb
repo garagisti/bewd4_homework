@@ -1,5 +1,4 @@
 class SearchController < ApplicationController
-
   def index
     if params[:search]
       @movies = Movie.search(params[:search])
@@ -7,5 +6,4 @@ class SearchController < ApplicationController
       @movies = Movie.all
     end
   end
-
 end

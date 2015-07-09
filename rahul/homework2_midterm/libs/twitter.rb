@@ -2,6 +2,9 @@ require 'oauth'
 require 'json'
 require 'rest-client'
 
+# SDP: The use of the oauth library technically skirts the line of not meeting
+# the requirements of this submission. Aim to build something simpler next time
+
 class Twitter
 
 

@@ -1,0 +1,19 @@
+Back End Web Development
+Project Brief
+Rahul Bose
+
+This document outlines a project brief for a Fantasy Formula One Website.
+The website will allow users to compete with each other based on real world Formula One
+race results. The website will update the latest Formula One Race & Qualifying results from a REST-ful API,
+and update the results into a results database.
+
+Users will receive points from these race results based on their choice of driver/teams.
+
+The user will have functionality such as:
+
+* Able to make choices of drivers/teams and score points from a subset of competition bonuses.
+For example, Top 10 Finishers, Bonus Points for particular driver performance, eg. Qualifying bonus,
+Fastest through Speed trap, Biggest mover at the end of the race etc.
+* Be able to review historic statistics of an upcoming race.
+* Be able to see the Betting Odds for an upcoming race.
+* Be able to create a League of Friends.
